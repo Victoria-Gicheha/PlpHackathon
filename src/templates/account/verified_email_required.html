@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+<section id="services" class="services section-bg" style="">
+  <div class="col-sm-12" style="padding:0px !important">
+
+    <div class="row" style="width:100%; padding:0px !important">
+
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 "></div>
+          <div class="col-md-8">
+            <div class="col-12 12 mobile_hidden" style="height: 140px;"></div>
+            <!-- <div class="col-sm-2"></div> -->
+            <div class="col-sm-12 mobile_hidden" style="margin-bottom: 5px;">
+              <img src="{% static 'logo.png' %}">
+            </div>
+
+            <div class="col-12 card-body ">
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-{{message.level_tag}}">
+                {{message}}.
+              </div>
+              {% endfor %}
+
+              {% endif %}
+              {% load i18n %}
+
+              {% block head_title %}{% trans "Verify Your E-mail Address" %}{%
+              endblock %}
+              <h1>{% trans "Verify Your E-mail Address" %}</h1>
+
+              {% url 'account_email' as email_url %}
+
+              <p>{% blocktrans %}This part of the site requires us to verify
+                that
+                you are who you claim to be. For this purpose, we require that
+                you
+                verify ownership of your e-mail address. {% endblocktrans %}
+              </p>
+
+              <p>{% blocktrans %}We have sent an e-mail to you for
+                verification. Please click on the link inside this e-mail.
+                Please
+                contact us if you do not receive it within a few minutes.{%
+                endblocktrans %}</p>
+
+              <p>{% blocktrans %}<strong>Note:</strong> you can still <a
+                  href="{{ email_url }}">change your e-mail
+                  address</a>.{% endblocktrans %}</p>
+
+            </div>
+            <div class="col-md-6 mobile_hidden">
+              <img src="{% static 'banner.jpeg' %}" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mobile_hidden">
+        <img src="{% static 'banner.jpeg' %}" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

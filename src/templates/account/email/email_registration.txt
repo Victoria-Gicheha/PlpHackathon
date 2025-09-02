@@ -1,0 +1,35 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from {{ site_name }}!
+Subject: Registering for Basic Digital Skills Training
+
+Dear [Applicant's Name],
+
+Thank you for registering for the Basic Digital Skills Training at [Your Institution's Name]. We are excited to have you on board and look forward to helping you enhance your digital skills.
+
+Training Details:
+
+Institution: [Your Institution's Name]
+Training Location: [Training Location Address]
+Coordinator: [Coordinator's Name]
+Coordinator's Contact: [Coordinator's Phone Number] | [Coordinator's Email Address]
+We believe that this training will empower you with essential digital skills that are crucial in today's fast-paced technological landscape. Our dedicated team is committed to providing you with a comprehensive and enriching learning experience.
+
+Here are some important details to keep in mind:
+
+Training Dates: [Start Date] to [End Date]
+Session Timings: [Start Time] to [End Time]
+Venue: [Training Venue Address]
+If you have any questions or need further assistance, please feel free to reach out to [Coordinator's Name], our Institution Coordinator, at [Coordinator's Phone Number] or [Coordinator's Email Address].
+
+Once again, thank you for choosing [Your Institution's Name] for your Basic Digital Skills Training. We are confident that this program will contribute significantly to your professional development.
+
+Best regards,
+
+[Your Name]
+[Your Title]
+[Your Institution's Name]
+[Your Contact Information]
+{{ activate_url }}
+{% endblocktrans %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you!
+{{ site_domain }}{% endblocktrans %}
+{% endautoescape %}

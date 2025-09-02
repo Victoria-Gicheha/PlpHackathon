@@ -1,0 +1,16 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from {{ site_name }}!
+Congratulations, you have successfully registered on Smart Academy Portal
+ , {{ site_domain }}!
+ Your username is {{ user_display }} .
+
+
+If this is correct, click the button below to activate your account
+ {{ activate_url }}
+{% endblocktrans %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you!
+Smart Academy
+
+{% endblocktrans %}
+{% endautoescape %}
+
+

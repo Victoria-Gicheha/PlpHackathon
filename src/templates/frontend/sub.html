@@ -1,0 +1,10 @@
+{% if active_sub %}
+<div class="alert alert-success">
+    <strong>Active Subscription:</strong> {{ active_sub.category.name }}
+    <br>
+    Expires on: {{ active_sub.expiry_date.strftime('%Y-%m-%d') }}
+</div>
+{% else %}
+<div class="alert alert-warning">You don’t have an active subscription.
+</div>
+{% endif %}

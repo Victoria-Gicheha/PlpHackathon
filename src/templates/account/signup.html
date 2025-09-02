@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% load i18n %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+<style>
+  .form-label {
+    display: none !important;
+  }
+
+  .form-control {
+    font-family: Open Sans !important;
+    color: #1D1D1B !important;
+    font-size: 13px !important;
+
+  }
+
+  .back_in_btn {
+
+    /* border: 1px solid #02953E; */
+    color: #02953E;
+    /* background-color:#02953E; */
+    /* border-radius: 3px; */
+    /* padding: 5px; */
+    text-align: center;
+  }
+
+  .back_in_btn:hover {
+    /* border: 1px solid #E10716;
+    background-color: #E10716; */
+    color: #E10716;
+    /* border-radius: 3px;
+    padding: 5px; */
+    text-align: center;
+  }
+</style>
+<section id="services" class="services section-bg" style="">
+  <div class="col-sm-12" style="padding:0px !important">
+
+    <div class="row" style="width:100%; padding:0px !important">
+
+      <div class="col-md-4 "></div>
+      <div class="col-md-4 card " style="padding: 10px;margin-top:10%;">
+        <!-- <div class="row"> -->
+        <!-- <div class="col-md-2 "></div> -->
+        <div class="col-md-12">
+          <div class="col-12 12 mobile_hidden" style="height: 10;">
+            <h3>MAPISHI POA SYSTEM</h3>
+          </div>
+          <!-- <div class="col-sm-2"></div> -->
+          <!-- <div class="col-sm-12 mobile_hidden" style="margin-bottom: 5px;">
+              <img src="{% static 'logo.jpeg' %}">
+            </div> -->
+          <!-- <div class="col-sm-2"></div> -->
+          <!-- <div class="col-sm-12 mobile_hidden"
+              style="margin-bottom: 5px;margin-top: 40px;">
+              <img src="{% static 'logo.jpeg' %}">
+            </div> -->
+          <div class="col-sm-12 ">
+            <div class="col-sm-12">
+              <div class="col-sm-12">
+                <h6>{% trans "Register" %}</h6>
+              </div>
+
+              <div class="col-md-12 ">
+                {% if messages %}
+
+                {% for message in messages %}
+
+
+                {% if message.tags %}
+
+                <div
+                  class="alert alert-{{message.tags}}  alert-dismissible alert-message"
+                  role="alert">
+                  {% else %}
+                  <div class="alert alert-info alert-dismissible alert-message"
+                    role="alert">
+                    {% endif %}
+
+                    <button type="button" class="close" data-dismiss="alert"
+                      aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+
+
+
+                  <form class="signup" id="signup_form"
+                    onsubmit="return myFunction()"
+                    enctype="multipart/form-data" method="post"
+                    action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+
+
+                    <div class="row">
+                      {% for field in form %}
+                      <div class="col-md-12"
+                        style="font-family: raleway !important; color:#1D1D1B !important;font-size: 13px !important;">
+
+                        {% bootstrap_field field show_label=False %}
+                      </div>
+                      {% endfor %}
+                    </div>
+
+
+                    <div class="row" style="padding-top: 20px;">
+                      <div class="co-md-12" style="
+                      text-align: center;
+                      font-size: 15px;
+                      font-family: open sans;
+                    ">
+                        {% if redirect_field_value %} <input type="hidden"
+                          name="{{ redirect_field_name }}"
+                          value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <button type="submit"
+                          class="button col-sm-12 btn btn-sm btn-success"
+                          style="text-align: center;">{% trans "Register" %}
+                          &raquo;</button> {% blocktrans %}Already have an
+                        account? <a href="{{ login_url }}"> Sign
+                          in</a>.{% endblocktrans %}
+
+                        <!-- <p><a href="https://www.smartacademy.go.ke" class="back_in_btn" style="border-bottom: 1px solid #ccc;margin-top: 5px;">Back to Smart Academy</a></p> -->
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-6 mobile_hidden">
+          <img src="{% static 'banner.jpeg' %}" style="width: 100%;">
+        </div> -->
+    </div>
+  </div>
+</section>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+<script type="text/javascript">
+  // $(document).ready(function () {
+  //   document.getElementsByName('password2')[0].placeholder = '';
+  //   document.getElementsByName('password1')[0].placeholder = '';
+  //   document.getElementsByName('last_name')[0].placeholder = '';
+  //   document.getElementsByName('first_name')[0].placeholder = '';
+  //   document.getElementsByName('phone_number')[0].placeholder = '';
+  //   document.getElementsByName('email')[0].placeholder = '';
+  //   $("label[for='id_password2']").text("Confirm Password");
+  // });
+
+</script>
+<script>
+  function myFunction() {
+    var password1 = document.getElementsByName("password1").value;
+    var password2 = document.getElementsByName("password2").value;
+    var ok = true;
+    if (password != password2) {
+      //alert("Passwords Do not match");
+      document.getElementsByName("password1").style.borderColor = "#E34234";
+      document.getElementsByName("password2").style.borderColor = "#E34234";
+      ok = false;
+
+    }
+    else {
+
+    }
+    return ok;
+  }
+  function checkPass() {
+    //Store the password field objects into variables ...
+    var password1 = document.getElementsByName('password1');
+    var password2 = document.getElementsByName('password2');
+    //Store the Confimation Message Object ...
+    var message = document.getElementsByName('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    password1.label = "Confirm Password"
+    //Compare the values in the password field 
+    //and the confirmation field
+    if (password1.value == password2.value) {
+      //The passwords match. 
+      //Set the color to the good color and inform
+      //the user that they have entered the correct password 
+      password2.style.backgroundColor = goodColor;
+      message.style.color = goodColor;
+      message.innerHTML = "Passwords Match!"
+    } else {
+      //The passwords do not match.
+      //Set the color to the bad color and
+      //notify the user.
+      password2.style.backgroundColor = badColor;
+      message.style.color = badColor;
+      message.innerHTML = "Passwords Do Not Match!"
+    }
+  }
+
+</script>
+{% endblock %}

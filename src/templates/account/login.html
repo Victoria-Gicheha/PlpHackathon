@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<style>
+  .form-label {
+    display: none !important;
+  }
+
+  .regiter_button {
+    border: 1px solid #E10716;
+    background-color: #E10716;
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .regiter_button:hover {
+    border: 1px solid #02953E;
+    color: #fff;
+    background-color: #02953E;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .sign_in_btn {
+
+    border: 1px solid #02953E;
+    color: #fff;
+    background-color: #02953E;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .sign_in_btn:hover {
+    border: 1px solid #E10716;
+    background-color: #E10716;
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .back_in_btn {
+
+    /* border: 1px solid #02953E; */
+    color: #02953E;
+    /* background-color:#02953E; */
+    /* border-radius: 3px; */
+    /* padding: 5px; */
+    text-align: center;
+  }
+
+  .back_in_btn:hover {
+    /* border: 1px solid #E10716;
+    background-color: #E10716; */
+    color: #E10716;
+    /* border-radius: 3px;
+    padding: 5px; */
+    text-align: center;
+  }
+</style>
+<section id="services" class="services section-bg" style="">
+  <div class="col-sm-12" style="padding:0px !important">
+
+    <div class="row" style="width:100%; padding:0px !important">
+
+      <div class="col-md-4 "></div>
+      <div class="col-md-4 card " style="padding: 10px;margin-top:10%;">
+        <!-- <div class="row"> -->
+        <!-- <div class="col-md-2 "></div> -->
+        <div class="col-md-12">
+          <div class="col-12 12 mobile_hidden" style="height: 10;">
+            <h3>MAPISHI POA SYSTEM</h3>
+          </div>
+          <!-- <div class="col-sm-2"></div> -->
+          <!-- <div class="col-sm-12 mobile_hidden" style="margin-bottom: 5px;">
+              <img src="{% static 'logo.jpeg' %}">
+            </div> -->
+          <div class="col-sm-12 ">
+            <div class="col-sm-12">Sign in</div>
+            <div class="btn btn-danger col-sm-12"
+              style="background: #E10716;font-family: raleway !important;font-size: 13px !important;margin-top: 20px;margin-bottom:10px;width: 100%;">
+              Please sign in to access this platform</div>
+
+            <!-- <div class="card-body card-body"> -->
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.level_tag}}">
+              {{message}}.
+            </div>
+            {% endfor %}
+
+            {% endif %}
+
+            {% get_providers as socialaccount_providers %}
+
+            {% if socialaccount_providers %}
+
+            <div class="socialaccount_ballot">
+
+              <ul class="socialaccount_providers">
+                {% include "socialaccount/snippets/provider_list.html" with
+                process="login" %}
+              </ul>
+
+              <div class="login-or">{% trans 'or' %}</div>
+
+            </div>
+
+            {% include "socialaccount/snippets/login_extra.html" %}
+
+            {% endif %}
+
+            <form class="login" method="POST"
+              action="{% url 'account_login' %}"
+              style="font-family: raleway !important;font-size: 13px !important;">
+              {% csrf_token %}
+              <div class="row">
+                {% for field in form %}
+
+                {% if field.name == 'remember' %}
+                <div class="col-md-6"
+                  style="font-family: raleway !important;font-size: 13px !important;">
+                  <label id="" for="{{ field.label }}">{{ field.label_tag }}
+
+                    {% if field.field.required %}<span class="special_class"
+                      style="color: red">*</span>
+                    {% endif %}
+                  </label>
+
+                  {% bootstrap_field field show_label=False %}
+
+
+                </div>
+                {% else %}
+                <div class="col-md-12"
+                  style="font-family: raleway !important;font-size: 13px !important;">
+                  <label class="form-label" for="{{ field.label }}">{{
+                    field.label_tag }}
+
+                    {% if field.field.required %}<span class="special_class"
+                      style="color: red">*</span>
+                    {% endif %}
+                  </label>
+
+                  {% bootstrap_field field show_label=False %}
+
+
+                </div>
+                {% endif %}
+                {% endfor %}
+
+
+                <!-- <div class="g-recaptcha" data-sitekey="6LebHvUdAAAAAKxucX98J_MX8wv1EEp3OR03KD1e
+            "></div> -->
+                <!-- <div class="col-md-6">
+            {% if redirect_field_value %}
+           
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+
+            {% endif %}
+          </div> -->
+                <div class="col-md-6" style="text-align: right;">
+                  <a href="{% url 'account_reset_password' %}"
+                    style="float: right;" class="">
+                    {% trans "Forgot Password?" %}</a>
+                </div>
+              </div>
+              <div class="row" style="padding-right:11px;padding-left:11px">
+                <!-- <button class="readon2 get-new" type="submit">{% trans "Sign In" %} &raquo;</button> -->
+                <button class="btn sign_in_btn col-sm-4"
+                  style="font-family: raleway !important;font-size: 13px !important;"
+                  type="submit">{% trans "Sign In" %} &raquo;</button>
+                <div class="col-sm-2"
+                  style="text-align: center; padding:8px;font-family: raleway !important;font-size: 13px !important;">
+                  Or </div>
+                <a class="col-sm-6 regiter_button"
+                  href="{% url 'account_signup' %}">Register</a>
+
+              </div>
+              <!-- <p style="text-align: center;margin-top: 15px;font-size: 15px;"><a href="https://www.smartacademy.go.ke" class="back_in_btn" style="border-bottom: 1px solid #ccc;margin-top: 10px;">Back to Smart Academy</a></p> -->
+
+            </form>
+
+            <!-- </div> -->
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+      <!-- <div class="col-md-6 mobile_hidden">
+        <img src="{% static 'banner.jpeg' %}" style="width: 100%;">
+      </div> -->
+    </div>
+  </div>
+</section>
+
+{% endblock %}

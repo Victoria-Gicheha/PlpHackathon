@@ -1,0 +1,87 @@
+{% extends 'frontend/base3.html' %}
+{% load static %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<script>
+    notify('{{message.level_tag}}', "{{message}}");
+</script>
+
+{% endfor %}
+
+{% endif %}
+
+<div class="container ">
+    <div class="col">
+        <div class="card h-100 py-2">
+            <h3 class="text-center " style="color: rgb(25, 135, 84);">Our
+                Packages
+            </h3>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for item in list %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header text-center bg-success text-white">
+                    {{item.name}}
+                </div>
+                <div class="card-body text-center">
+                    <h2 class="card-title">{{item.price}} <small
+                            class="text-muted">/month</small></h2>
+                    <ul class="list-group list-group-flush my-3">
+                        <li class="list-group-item">Access to basic features
+                        </li>
+                        <li class="list-group-item">Limited prescriptions</li>
+                        <li class="list-group-item">Community support</li>
+                    </ul>
+                    <a href="{% url 'make-subscription' item.id %}"
+                        class="btn btn-success">Select</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Standard Plan -->
+        <!-- <div class="col">
+            <div class="card h-100 shadow-sm border-success">
+                <div class="card-header text-center bg-success text-white">
+                    Standard
+                </div>
+                <div class="card-body text-center">
+                    <h2 class="card-title">$25 <small
+                            class="text-muted">/month</small></h2>
+                    <ul class="list-group list-group-flush my-3">
+                        <li class="list-group-item">All Basic features</li>
+                        <li class="list-group-item">Unlimited prescriptions
+                        </li>
+                        <li class="list-group-item">Priority support</li>
+                    </ul>
+                    <a href="{% url 'account' %}?package=standard"
+                        class="btn btn-success">Select</a>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Premium Plan -->
+        <!-- <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header text-center bg-success text-white">
+                    Premium
+                </div>
+                <div class="card-body text-center">
+                    <h2 class="card-title">$50 <small
+                            class="text-muted">/month</small></h2>
+                    <ul class="list-group list-group-flush my-3">
+                        <li class="list-group-item">All Standard features</li>
+                        <li class="list-group-item">AI-powered insights</li>
+                        <li class="list-group-item">Dedicated support</li>
+                    </ul>
+                    <a href="{% url 'account' %}?package=premium"
+                        class="btn btn-success">Select</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+{% endblock %}
