@@ -29,13 +29,12 @@ Aligned with **UN SDG 4 – Quality Education**, our solution supports learners,
 
 ---
 
-## 👥 Team 5 Members  
-(Add your details here 👇)  
-- [Victoria Njeri Gicheha] – [victoriagicheha005@gmail.com]  
-- [Japheth Taboi] – [japhethtaboi2@gmail.com]  
-- [Mordechai Carmon] – [montiecarmon2002@gmail.com]  
-- [Mary Wambui Muthima] – [muthimamary@gmail.com]  
-- [Margaret Samba] – [maggiesamba989@gmail.com]  
+## 👥 Team 5 Members    
+- Victoria Njeri Gicheha – victoriagicheha005@gmail.com  
+- Japheth Taboi – japhethtaboi2@gmail.com  
+- Mordechai Carmon – montiecarmon2002@gmail.com 
+- Mary Wambui Muthima – muthimamary@gmail.com  
+- Margaret Samba – maggiesamba989@gmail.com  
 
 ---
 
